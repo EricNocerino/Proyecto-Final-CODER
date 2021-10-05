@@ -1,39 +1,55 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
+import Item from "../Items/Item";
 //components
 import Category from "./Category";
 import { db } from "../Firebase";
-import { collection, getDocs } from "firebase/firestore";
+import { collection, getDocs, where, query } from "firebase/firestore";
 import "./CategoryListContainer.css";
 
 const CategoryListContainer = ({ match }) => {
 	const [categories, setCategories] = useState([]);
+	const { id } = useParams();
+	const docs = [];
 
 	const getCategories = async () => {
-		const docs = [];
-
-		const querySnapshot = await getDocs(collection(db, "products"));
-		querySnapshot.forEach((doc) => {
-			docs.push({ ...doc.data(), id: doc.id });
-		});
-		setCategories(docs);
+		if (id) {
+			const datosRef = query(
+				collection(db, "products"),
+				where("category", "==", id)
+			);
+			const datoSnapshot = await getDocs(datosRef);
+			datoSnapshot.forEach((doc) => docs.push({ ...doc.data(), id: doc.id }));
+			setCategories(docs);
+		}
 	};
 
 	useEffect(() => {
 		getCategories();
-	}, []);
+	}, [id]);
 
 	return (
 		<div className="container">
 			<h2>Categorías</h2>
-			{categories.map((category) => {
-				return (
-					<Link className="link" to={`/detail/${category.id}`}>
-						<Category category={category} key={category.id} />
-					</Link>
-				);
-			})}
+			<Link to={`/category/${categories.id}`}>
+				<Category dato={categories.id} />
+			</Link>
+
+			<div className="Item">
+				{categories.map((product) => {
+					return (
+						<Link
+							className="items"
+							to={`/detail/${product.id}`}
+							style={{ textDecoration: "none" }}
+						>
+							<Item product={product} key={product.id} />
+						</Link>
+					);
+				})}
+			</div>
 		</div>
 	);
 };

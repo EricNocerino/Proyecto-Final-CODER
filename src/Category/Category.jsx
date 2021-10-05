@@ -1,11 +1,20 @@
 import React from "react";
 import { Button } from "semantic-ui-react";
+import { Link } from "react-router-dom";
 
-const Category = ({ category }) => {
+const Category = ({ Category }) => {
 	return (
-		<Button.Group>
-			<Button>{category.category}</Button>
-		</Button.Group>
+		<>
+			<Link to="/category/Agujas">
+				<Button>Agujas</Button>
+			</Link>
+			<Link to="/category/Tintas">
+				<Button>Tintas</Button>
+			</Link>
+			<Link to="/category/Insumos">
+				<Button>Insumos</Button>
+			</Link>
+		</>
 	);
 };
 

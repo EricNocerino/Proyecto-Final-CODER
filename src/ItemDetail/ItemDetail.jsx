@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Item, Card, Button } from "semantic-ui-react";
 import ItemCount from "../ItemCount/ItemCount";
-import CategoryListContainer from "../Category/CategoryListContainer";
+
 import { Link } from "react-router-dom";
 import { useCartContext } from "../CartContext/CartContext";
 
@@ -22,7 +22,6 @@ const ItemDetail = ({ dataProduct }) => {
 
 	return (
 		<>
-			<CategoryListContainer />
 			<Card style={{ height: 610, width: 400, margin: 20 }}>
 				<Item.Group style={{ margin: 20 }}>
 					<Item>

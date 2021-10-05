@@ -1,0 +1,19 @@
+@import url("https://fonts.googleapis.com/css2?family=Oxygen&display=swap");
+
+.container {
+	align-items: center;
+	grid-template-columns: 1fr 1fr 1fr 1fr 1fr;
+	width: max-content;
+}
+
+.container h2 {
+	display: flex;
+	flex-direction: column;
+	font-family: "Oxygen", sans-serif;
+	color: rgb(90, 17, 224);
+}
+
+link {
+	padding: 10px;
+	flex-direction: row;
+}

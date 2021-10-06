@@ -2,7 +2,7 @@ import React from "react";
 import { Button } from "semantic-ui-react";
 import { Link } from "react-router-dom";
 
-const Category = ({ Category }) => {
+const Category = ({ dato }) => {
 	return (
 		<>
 			<Link to="/category/Agujas">

@@ -3,7 +3,7 @@ import "./FormUser.css";
 
 //componentes
 import { useCartContext } from "../CartContext/CartContext";
-import { db } from "../Firebase"
+import { db } from "../Firebase";
 import {
 	addDoc,
 	serverTimestamp,
@@ -85,7 +85,11 @@ const FormBuyer = () => {
 					// Validacion Telefono
 					if (!values.phone) {
 						err.phone = "Por favor ingresa un telefono";
-					} else if (!/^\d{8,11}/.test(values.phone)) {
+					} else if (
+						!/^(?:(?:00)?549?)?0?(?:11|[2368]\d)(?:(?=\d{0,2}15)\d{2})??\d{8}$/.test(
+							values.phone
+						)
+					) {
 						err.phone = "El formato de telefono ingresado es incorrecto.";
 					}
 
@@ -132,7 +136,7 @@ const FormBuyer = () => {
 								type="tel"
 								id="phone"
 								name="phone"
-								placeholder="cel 011 1111 1111"
+								placeholder="cel (54911 + 8digits)"
 							/>
 							<ErrorMessage
 								name="phone"
